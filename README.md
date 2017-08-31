@@ -80,9 +80,7 @@ We will also be breaking our work into short **sprints** with specific design go
 ## Getting Started
 
 1. Fork and clone this repository, and `cd` into your local copy.
-1. Run `npm install`, which will install back-end packages from `package.json`.
-1. Start the server with `node server.js`, `npm start`, or `nodemon`.
-1. View the site at `localhost:3000`.
+1. Add your partner as a collaborator on your fork of the repo.
 1. Read the rest of this readme, then continue to Sprint 0.
 
 
