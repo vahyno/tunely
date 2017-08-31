@@ -216,16 +216,16 @@ Now that the database is seeded, let's transition to using the database in our `
 
 1. Delete the hard-coded server data in `controllers/albumsController.js`.
 
-1. Require `./models` in `controllers/albumsController.js`.
+1. Require `../models` in `controllers/albumsController.js`.
 
 1. Edit the current function `index` so that it accesses the database and pulls out all albums.
 
 1. Verify that you're getting the right data on your home page now.  Your AJAX should still work. If the attribute names in the data have changed at all, you'll have to resolve that.
 
-<details><summary>hint: requiring ./models</summary>
+<details><summary>hint: requiring ../models</summary>
 
 ```js
-var db = require('./models');
+var db = require('../models');
 ```
 </details>
 
