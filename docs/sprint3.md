@@ -179,21 +179,21 @@ We should now have a working modal that opens and closes, but it doesn't do anyt
 
 Let's add a function to handle saving a new song modal -- `POST` the input data as a new song. Here's pseudocode:
 
-	```
-  // pseudocode!
-	// call this when the save new song button is clicked
-	function handleNewSongSubmit(e) {
-	  e.preventDefault();
-	  // get data from modal fields
-	  // get album ID
-	  // POST to SERVER
-	  // clear form
-	  // close modal
-	  // update the correct album to show the new song
-	}
-	```
+```
+// pseudocode!
+// call this when the save new song button is clicked
+function handleNewSongSubmit(e) {
+  e.preventDefault();
+  // get data from modal fields
+  // get album ID
+  // POST to SERVER
+  // clear form
+  // close modal
+  // update the correct album to show the new song
+}
+```
 
-	> You don't have to fill in all of the code here yet, just think through the pseudocode above and move forward.
+  > You don't have to fill in all of the code here yet, just think through the pseudocode above and move forward.
 
   > Note that this modal doesn't actually contain a form. It's generally better practice to use a full form and handle the submit event.
 
