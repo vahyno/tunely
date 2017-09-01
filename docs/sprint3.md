@@ -129,16 +129,16 @@ First, we need to make sure we have the album id so we can use it later.  To get
 
   [button inside panel footer](assets/images/sprint3_add_song_button.png).
 
-	<details><summary> click to see button code</summary>
-	```js
-	<div class='panel-footer'>
-	  <button class='btn btn-primary add-song'>Add Song</button>
-	</div>
-	```
+<details><summary> click to see button code</summary>
 
-    > CSS IDs must be unique, so we'll target each of these buttons with a compound CSS selector including the `add-song` class.
+```js
+<div class='panel-footer'>
+  <button class='btn btn-primary add-song'>Add Song</button>
+</div>
+```
+CSS IDs must be unique, so we'll target each of these buttons with a compound CSS selector including the `add-song` class.
 
-	</details>
+</details>
 
 
 
