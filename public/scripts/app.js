@@ -139,8 +139,14 @@ function handleAlbumSaveClick() {
 }
 
 
-function handleAlbumUpdatedResponse() {
+function handleAlbumUpdatedResponse(data) {
+  console.log('response to update', data);
+
+  var albumId = data._id;
   
+  // remove this album from the page, re-draw with updated data
+  $('[data-album-id=' + albumId + ']').remove();
+  renderAlbum(data);
 }
 
 
