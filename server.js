@@ -30,6 +30,7 @@ app.get('/', function homepage (req, res) {
 
 // create a new route for GET /api with callback controllers.api.index
 app.get('/api', controllers.api.index);
+app.get('/api/albums', controllers.albums.index);
 
 /**********
  * SERVER *
