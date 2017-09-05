@@ -79,6 +79,7 @@ $(document).ready(function() {
 
   $('#saveSong').on('click', handleNewSongSubmit);
   $('#albums').on('click', '.edit-album', handleAlbumEditClick);
+  $('#albums').on('click', '.save-album', handleAlbumSaveClick);
 });
 
 function handleSuccess (albums) {
@@ -114,6 +115,27 @@ function handleAlbumEditClick(e) {
   // get the releasedate and replace its field with an input element
   var releaseDate = $albumRow.find('span.album-releaseDate').text();
   $albumRow.find('span.album-releaseDate').html('<input class="edit-album-releaseDate" value="' + releaseDate + '"></input>');
+}
+
+
+function handleAlbumSaveClick() {
+  var albumId = $(this).parents('.album').data('album-id'); // $(this).closest would have worked fine too
+  var $albumRow = $('[data-album-id=' + albumId + ']');
+
+  var data = {
+    name: $albumRow.find('.edit-album-name').val(),
+    artistName: $albumRow.find('.edit-artist-name').val(),
+    releaseDate: $albumRow.find('.edit-album-releaseDate').val()
+  };
+  
+  console.log('PUTing data for album', albumId, 'with data', data);
+
+  $.ajax({
+    method: 'PUT',
+    url: '/api/albums/' + albumId,
+    data: data,
+    success: handleAlbumUpdatedResponse
+  });
 }
 
 
