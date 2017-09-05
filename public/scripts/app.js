@@ -32,8 +32,25 @@ var sampleAlbums = [{
 
 $(document).ready(function() {
   console.log('app.js loaded!');
-  renderAlbum(sampleAlbums[0]);
+
+  // make a GET request for all albums
+  $.ajax({
+    method: 'GET',
+    url: '/api/albums',
+    success: handleSuccess,
+    error: handleError
+  });
 });
+
+function handleSuccess (albums) {
+  albums.forEach(function(album) {
+    renderAlbum(album);
+  });
+};
+
+function handleError(err){
+  console.log('There has been an error: ', err);
+}
 
 
 // this function takes a single album and renders it to the page
