@@ -149,8 +149,6 @@ We'll use the module pattern to make these "controller" functions available in t
 ## Step 3: Database Setup
 
 
-1. If you haven't yet, use `npm` to install `mongoose`.  Save it as a dependency of your project with `--save`.
-
 1. In `models/album.js`, add a schema and a model for our albums.  Determine the attributes and data types for the schema based on the sample data we've been using.
 
 1. Export the `Album` model in `models/album.js`.
@@ -193,9 +191,7 @@ We'll use the module pattern to make these "controller" functions available in t
 
 1. Make sure `mongod` is running in a tab of your terminal.
 
-1. Run `node seed.js`.
-
-1. Resolve any errors you encounter.
+1. Run `node seed.js` in another terminal tab. Resolve any errors you encounter.
 
 <details><summary>hint: <code>error connect ECONNREFUSED</code></summary>
 If you see an error like:
@@ -214,9 +210,7 @@ This error usually means that `mongod` is not running.
 
 Now that the database is seeded, let's transition to using the database in our `/api/albums` route.
 
-1. Delete the hard-coded server data in `controllers/albumsController.js`.
-
-1. Require `../models` in `controllers/albumsController.js`.
+1. Define a variable called `db` in `controllers/albumsController.js` that requires `../models`.
 
 1. Edit the current function `index` so that it accesses the database and pulls out all albums.
 
