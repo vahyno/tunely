@@ -22,7 +22,7 @@ Check your work from sprint 0 by referencing the solutions on GitHub. In particu
 
 Let's start on the outside and work our way in.  
 
-1. Open `index.html` in your text editor and find the HTML for an **album**.  This is a hard-coded sample set up for you to show the desired HTML structure.  Convert this into a template string using the data structure shown in the array of albums from `app.js`. Leave the `div` with class `albums` in place.
+1. Open `index.html` in your text editor and find the HTML for an **album**.  This is a hard-coded sample set up for you to show the desired HTML structure.  Convert this into a template string using the data structure shown in the array of albums from `app.js`. Leave the `div` with id `albums` in place.
 
   <details><summary>hint</summary>
 
