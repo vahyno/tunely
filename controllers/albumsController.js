@@ -1,6 +1,11 @@
+var db = require('../models');
+
 // GET /api/albums
 function index(req, res) {
-  res.json(albums);
+  // access database and pull out all albums
+  db.Album.find({}, function(err, allAlbums) {
+    res.json(allAlbums);
+  });
 }
 
 // POST /api/albums
