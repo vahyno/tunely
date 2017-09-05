@@ -9,6 +9,7 @@ app.use(express.static('public'));
 
 // Require the models directory in server.js
 var db = require('./models');
+var controllers = require('./controllers');
 
 /**********
  * ROUTES *
@@ -26,6 +27,9 @@ app.get('/', function homepage (req, res) {
 /*
  * JSON API ENDPOINTS
  */
+
+// create a new route for GET /api with callback controllers.api.index
+app.get('/api', controllers.api.index);
 
 /**********
  * SERVER *
