@@ -25,6 +25,9 @@ function create(req, res) {
 // GET /api/albums/:albumId
 function show(req, res) {
   // find one album by id and send it back as JSON
+  db.Album.findById(req.params.albumId, function(err, foundAlbum) {
+    res.json(foundAlbum);
+  });
 }
 
 // DELETE /api/albums/:albumId
