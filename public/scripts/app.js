@@ -40,6 +40,14 @@ $(document).ready(function() {
     success: handleSuccess,
     error: handleError
   });
+
+  $('#album-form form').on('submit', function(e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+
+    // reset form input values after formData has been captured
+    $(this).trigger("reset");
+  });
 });
 
 function handleSuccess (albums) {
