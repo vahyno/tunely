@@ -166,7 +166,19 @@ function handleNewSongSubmit(e) {
   // POST to SERVER
   var songPostUrl = '/api/albums/'+ albumId + '/songs';
   $.post(songPostUrl, postData, function(data) {
-    
+    $modal.modal('hide');
+
+    $songNameField.val('');
+    $trackNumberField.val('');
+
+    var albumGetUrl = '/api/albums/' + albumId;
+    $.get(albumGetUrl, function(updatedAlbum) {
+      // remove current instance of album
+      $('[data-album-id=' + albumId + ']').remove();
+      
+      // re-render album with new songs
+      renderAlbum(updatedAlbum);
+    });
   }).fail(function(xhr, status, err) {
     console.log('post to /api/albums/:albumId/songs resulted in error', err);
   });

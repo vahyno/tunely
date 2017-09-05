@@ -2,7 +2,7 @@ var db = require('../models');
 
 // POST '/api/albums/:albumId/songs'
 function create(req, res) {
-  db.Album.findById(req.params.albumId, function(err, foundAlbum) {
+  db.Album.findById(req.params.album_id, function(err, foundAlbum) {
     
     // dangerous – in a real app, we'd validate the incoming data
     var newSong = new db.Song(req.body);
