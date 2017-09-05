@@ -35,7 +35,9 @@ app.get('/', function homepage (req, res) {
 // create a new route for GET /api with callback controllers.api.index
 app.get('/api', controllers.api.index);
 app.get('/api/albums', controllers.albums.index);
+
 app.post('/api/albums', controllers.albums.create);
+app.post('/api/albums/:album_id/songs', controllers.albumsSongs.create);
 
 /**********
  * SERVER *
