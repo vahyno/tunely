@@ -78,6 +78,7 @@ $(document).ready(function() {
   });
 
   $('#saveSong').on('click', handleNewSongSubmit);
+  $('#albums').on('click', '.edit-album', handleAlbumEditClick);
 });
 
 function handleSuccess (albums) {
@@ -88,6 +89,31 @@ function handleSuccess (albums) {
 
 function handleError(err){
   console.log('There has been an error: ', err);
+}
+
+
+// when the edit button for an album is clicked
+function handleAlbumEditClick(e) {
+  var $albumRow = $(this).closest('.album');
+  var albumId = $albumRow.data('album-id');
+  console.log('albumId to edit', albumId);
+
+  // show 'Save Changes' button
+  $albumRow.find('.save-album').toggleClass('hidden');
+  // hide 'Edit' button
+  $albumRow.find('.edit-album').toggleClass('hidden');
+
+  // get album name and replace its field with an input element
+  var albumName = $albumRow.find('span.album-name').text();
+  $albumRow.find('span.album-name').html('<input class="edit-album-name" value="' + albumName + '"></input>');
+
+  // get the artist name and replace its field with an input element
+  var artistName = $albumRow.find('span.artist-name').text();
+  $albumRow.find('span.artist-name').html('<input class="edit-artist-name" value="' + artistName + '"></input>');
+
+  // get the releasedate and replace its field with an input element
+  var releaseDate = $albumRow.find('span.album-releaseDate').text();
+  $albumRow.find('span.album-releaseDate').html('<input class="edit-album-releaseDate" value="' + releaseDate + '"></input>');
 }
 
 
@@ -144,6 +170,8 @@ function renderAlbum(album) {
             <div class='panel-footer'>
               <button class='btn btn-primary add-song'>Add Song</button>
               <button class='btn btn-danger delete-album'>Delete Album</button>
+              <button class='btn btn-info edit-album'>Edit Album</button>
+              <button class='btn btn-info save-album hidden'>Save Changes</button>
             </div>
 
           </div>
