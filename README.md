@@ -136,8 +136,8 @@ There is a solution branch in this repository for each sprint. For the most part
 
 1. Check out the desired solutions branch to start from:
 
-  > `git checkout 36/solutions_sprint_3`
+  > `git checkout sprint-4`
 
 1. Create a new branch from the solution branch for your work:
 
-  > `git checkout -b my_sprint4`
+  > `git checkout -b my-sprint-4`
