@@ -7,6 +7,9 @@ var app = express();
 // serve the public directory as a static file directory
 app.use(express.static('public'));
 
+// Require the models directory in server.js
+var db = require('./models');
+
 /**********
  * ROUTES *
 **********/
