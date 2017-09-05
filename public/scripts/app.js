@@ -52,6 +52,17 @@ $(document).ready(function() {
     // reset form input values after formData has been captured
     $(this).trigger("reset");
   });
+
+  // add click handler to 'add song' buttons
+  $('#albums').on('click', '.add-song', function(e) {
+    console.log('add-song clicked!');
+
+    var id = $(this).closest('.album').data('album-id');
+    console.log('id', id);
+    
+    $('#songModal').data('album-id', id);
+    $('#songModal').modal();
+  });
 });
 
 function handleSuccess (albums) {
@@ -76,7 +87,7 @@ function renderAlbum(album) {
   // HTML template string for each album
   var albumHtml = `
     <!-- one album -->
-    <div class="row album">
+    <div class="row album" data-album-id=${ album._id }>
 
       <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
@@ -116,6 +127,7 @@ function renderAlbum(album) {
             <!-- end of album internal row -->
 
             <div class='panel-footer'>
+              <button class='btn btn-primary add-song'>Add Song</button>
             </div>
 
           </div>
