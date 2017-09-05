@@ -4,6 +4,9 @@
 var express = require('express');
 var app = express();
 
+// serve the public directory as a static file directory
+app.use(express.static('public'));
+
 /**********
  * ROUTES *
 **********/
