@@ -67,6 +67,11 @@ function handleError(err){
 
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
+  // list songs along with each album
+  var formattedSongsList = album.songs.map(function(song) {
+    return `- (${ song.trackNumber }) ${ song.name }`;
+  });
+  var formattedSongsStr = formattedSongsList.join(', ');
 
   // HTML template string for each album
   var albumHtml = `
@@ -98,6 +103,11 @@ function renderAlbum(album) {
                   <li class="list-group-item">
                     <h4 class='inline-header'>Released date:</h4>
                     <span class='album-releaseDate'>${ album.releaseDate }</span>
+                  </li>
+
+                  <li class="list-group-item">
+                    <h4 class="inline-header">Songs:</h4>
+                    <span>${ formattedSongsStr }</span>
                   </li>
                 </ul>
               </div>
