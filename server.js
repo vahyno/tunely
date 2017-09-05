@@ -4,10 +4,6 @@
 var express = require('express');
 var app = express();
 
-// serve static files from public folder
-app.use(express.static(__dirname + '/public'));
-
-
 /**********
  * ROUTES *
 **********/
@@ -16,9 +12,9 @@ app.use(express.static(__dirname + '/public'));
   HTML ENDPOINTS
 */
 
-// add a route so your server will respond to GET / with a simple message
+// add a route so your server will respond to GET / by serving index.html
 app.get('/', function homepage (req, res) {
-  res.send('Hi, this is a simple message!');
+  res.sendFile('views/index.html', { root : __dirname });
 });
 
 /*
