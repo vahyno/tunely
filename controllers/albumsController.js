@@ -11,7 +11,11 @@ function index(req, res) {
 // POST /api/albums
 function create(req, res) {
   // create an album based on request body and send it back as JSON
-  
+
+  // break data in the genre field into an array
+  var genres = req.body.genres.split(', ');
+  req.body.genres = genres;
+
   // console.log a message
   console.log('you are creating an album!');
   

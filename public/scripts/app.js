@@ -45,6 +45,10 @@ $(document).ready(function() {
     e.preventDefault();
     var formData = $(this).serialize();
 
+    $.post('/api/albums', formData, function(album) {
+      
+    })
+
     // reset form input values after formData has been captured
     $(this).trigger("reset");
   });
