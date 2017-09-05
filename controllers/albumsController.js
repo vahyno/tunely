@@ -11,6 +11,12 @@ function index(req, res) {
 // POST /api/albums
 function create(req, res) {
   // create an album based on request body and send it back as JSON
+  
+  // console.log a message
+  console.log('you are creating an album!');
+  
+  // send back the data the server received
+  res.send(req);
 }
 
 // GET /api/albums/:albumId
