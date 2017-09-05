@@ -40,6 +40,8 @@ app.get('/api/albums/:album_id', controllers.albums.show);
 app.post('/api/albums', controllers.albums.create);
 app.post('/api/albums/:album_id/songs', controllers.albumsSongs.create);
 
+app.put('/api/albums/:id', controllers.albums.update);
+
 app.delete('/api/albums/:album_id', controllers.albums.destroy);
 
 /**********

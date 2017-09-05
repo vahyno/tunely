@@ -139,6 +139,11 @@ function handleAlbumSaveClick() {
 }
 
 
+function handleAlbumUpdatedResponse() {
+  
+}
+
+
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
   // list songs along with each album
