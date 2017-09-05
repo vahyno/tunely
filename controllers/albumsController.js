@@ -16,11 +16,10 @@ function create(req, res) {
   var genres = req.body.genres.split(', ');
   req.body.genres = genres;
 
-  // console.log a message
-  console.log('you are creating an album!');
-  
-  // send back the data the server received
-  res.send(req);
+  db.Album.create(req.body, function(err, album) {
+    if (err) { console.log('error', err); }
+    res.json(album);
+  });
 }
 
 // GET /api/albums/:albumId
