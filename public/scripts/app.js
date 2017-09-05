@@ -46,7 +46,7 @@ $(document).ready(function() {
     var formData = $(this).serialize();
 
     $.post('/api/albums', formData, function(album) {
-      
+      renderAlbum(album);
     })
 
     // reset form input values after formData has been captured
