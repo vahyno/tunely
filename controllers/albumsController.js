@@ -33,6 +33,10 @@ function show(req, res) {
 // DELETE /api/albums/:albumId
 function destroy(req, res) {
   // find one album by id, delete it, and send it back as JSON
+  db.Album.findByIdAndRemove(req.params.album_id, function(err, deletedAlbum) {
+    if (err) { console.log('error', err); }
+    res.send(200);
+  });
 }
 
 // PUT or PATCH /api/albums/:albumId
