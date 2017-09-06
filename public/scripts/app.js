@@ -81,6 +81,9 @@ $(document).ready(function() {
   $('#albums').on('click', '.edit-album', handleAlbumEditClick);
   $('#albums').on('click', '.save-album', handleAlbumSaveClick);
   $('#albums').on('click', '.edit-songs', handleSongsEditClick);
+
+  $('#editSongsModalBody').on('click', 'button.btn-danger', handleDeleteSongClick);
+
 });
 
 function handleSuccess (albums) {
@@ -293,5 +296,37 @@ function handleNewSongSubmit(e) {
     });
   }).fail(function(xhr, status, err) {
     console.log('post to /api/albums/:albumId/songs resulted in error', err);
+  });
+}
+
+
+function handleDeleteSongClick(e) {
+  e.preventDefault();
+  var songId = $(this).data('song-id');
+  var albumId = $(this).closest('form').data('album-id');
+
+  var url = '/api/albums/' + albumId + '/songs/' + songId;
+  console.log('send DELETE ', url);
+  $.ajax({
+    method: 'DELETE',
+    url: url,
+    success: handleSongDeleteResponse
+  });
+}
+
+function handleSongDeleteResponse(data) {
+  var songId = data._id;
+  var $formRow = $('form#' + songId);
+  var albumId = $formRow.data('album-id');
+
+  // remove song edit form from the page
+  $formRow.remove();
+  fetchAndReRenderAlbumById(albumId);
+}
+
+function fetchAndReRenderAlbumById(albumId) {
+  $.get('/api/albums/' + albumId, function(data) {
+    $('div[data-album-id=' + albumId + ']').remove();
+    renderAlbum(data);
   });
 }

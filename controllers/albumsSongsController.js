@@ -23,8 +23,27 @@ function create(req, res) {
   });
 }
 
+// DELETE '/api/albums/:albumId/songs/:songId'
+function destroy(req, res) {
+  db.Album.findById(req.params.album_id, function(err, foundAlbum) {
+    console.log(foundAlbum);
+    // we've got the album, now find the song within it
+    var correctSong = foundAlbum.songs.id(req.params.song_id);
+    if (correctSong) {
+      correctSong.remove();
+      // resave the album now that the song is gone
+      foundAlbum.save(function(err, saved) {
+        console.log('REMOVED ', correctSong.name, 'FROM ', saved.songs);
+        res.json(correctSong);
+      });
+    } else {
+      res.send(404);
+    }
+  });
+}
 
 module.exports = {
   index: index,
-  create: create
+  create: create,
+  destroy: destroy
 };
