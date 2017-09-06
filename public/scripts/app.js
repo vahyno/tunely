@@ -152,7 +152,37 @@ function handleAlbumUpdatedResponse(data) {
 
 
 function handleSongsEditClick() {
-  $('#editSongsModal').modal('show');
+  var $albumRow = $(this).closest('.album');
+  var albumId = $albumRow.data('album-id');
+
+  $.get('/api/albums/' + albumId + "/songs", function(songs) {
+    var editSongsFormsHtml = buildEditSongsForms(albumId, songs);
+    $('#editSongsModalBody').html(editSongsFormsHtml);
+
+    $('#editSongsModal').modal();
+  });
+}
+
+
+function buildEditSongsForms(albumId, songs) {
+  var songEditFormHtmlStrings = songs.map(function(song) {
+    return `
+      <form class="form-inline" id="${song._id}" data-album-id="${albumId}" >
+        <div class="form-group">
+          <input type="text" class="form-control song-trackNumber" value="${song.trackNumber}">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control song-name" value="${song.name}">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-danger" data-song-id="${song._id}">x</button>
+        </div>
+      </form>
+    `;
+  });
+
+  // combine all song forms into a single string
+  return songEditFormHtmlStrings.join('');
 }
 
 
