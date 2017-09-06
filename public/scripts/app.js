@@ -80,6 +80,7 @@ $(document).ready(function() {
   $('#saveSong').on('click', handleNewSongSubmit);
   $('#albums').on('click', '.edit-album', handleAlbumEditClick);
   $('#albums').on('click', '.save-album', handleAlbumSaveClick);
+  $('#albums').on('click', '.edit-songs', handleSongsEditClick);
 });
 
 function handleSuccess (albums) {
@@ -150,6 +151,11 @@ function handleAlbumUpdatedResponse(data) {
 }
 
 
+function handleSongsEditClick() {
+  $('#editSongsModal').modal('show');
+}
+
+
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
   // list songs along with each album
@@ -202,6 +208,7 @@ function renderAlbum(album) {
 
             <div class='panel-footer'>
               <button class='btn btn-primary add-song'>Add Song</button>
+              <button class='btn btn-info edit-songs'>Edit Songs</button>
               <button class='btn btn-danger delete-album'>Delete Album</button>
               <button class='btn btn-info edit-album'>Edit Album</button>
               <button class='btn btn-info save-album hidden'>Save Changes</button>
