@@ -67,6 +67,14 @@ $(document).ready(function() {
   $('#albums').on('click', '.delete-album', function(e) {
     var id = $(this).closest('.album').data('album-id');
     console.log('id', id);
+
+    $.ajax({
+      url: '/api/albums/' + id, 
+      type: 'DELETE', 
+      success: function(result) {
+        $('[data-album-id=' + id + ']').remove();
+      }
+    });
   });
 
   $('#saveSong').on('click', handleNewSongSubmit);
