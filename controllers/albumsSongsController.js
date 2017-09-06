@@ -23,6 +23,25 @@ function create(req, res) {
   });
 }
 
+// PUT '/api/albums/:albumId/songs/:songId'
+function update(req, res) {
+  db.Album.findById(req.params.album_id, function(err, foundAlbum) {
+    var correctSong = foundAlbum.songs.id(req.params.song_id);
+
+    if (correctSong) {
+      correctSong.trackNumber = req.body.trackNumber;
+      correctSong.name = req.body.name;
+
+      foundAlbum.save(function(err, saved) {
+        console.log('UPDATED', correctSong, 'IN ', saved.songs);
+        res.json(correctSong);
+      });
+    } else {
+      res.send(404);
+    }
+  });
+}
+
 // DELETE '/api/albums/:albumId/songs/:songId'
 function destroy(req, res) {
   db.Album.findById(req.params.album_id, function(err, foundAlbum) {
@@ -45,5 +64,6 @@ function destroy(req, res) {
 module.exports = {
   index: index,
   create: create,
+  update: update,
   destroy: destroy
 };

@@ -83,8 +83,58 @@ $(document).ready(function() {
   $('#albums').on('click', '.edit-songs', handleSongsEditClick);
 
   $('#editSongsModalBody').on('click', 'button.btn-danger', handleDeleteSongClick);
+  $('#editSongsModal').on('click', 'button#editSongsModalSubmit', handleUpdateSongsSave);
 
 });
+
+function handleUpdateSongsSave(e) {
+  var $modal = $('#editSongsModal');
+
+  if ($modal.find('form').length == 0) {
+    // there are no songs to update
+    $modal.modal('hide');
+    return;
+  }
+
+  var albumId = $modal.find('form').data('album-id');
+  var updatedSongs = [];
+
+  $modal.find('form').each(function () {
+    var song = {};
+    song._id = $(this).attr('id');
+    song.name = $(this).find('input.song-name').val();
+    song.trackNumber = $(this).find('input.song-trackNumber').val();
+
+    updatedSongs.push(song);
+  });
+
+  $modal.modal('hide');
+  updateSongs(albumId, updatedSongs);
+}
+
+function updateSongs(albumId, songs) {
+  // 1 PUT request per songId
+  // re-render entire album after all PUT requests are finished
+  var url = '/api/albums/' + albumId + '/songs/';
+  var deferreds = [];
+
+  songs.forEach(function(song) {
+    var putRequest = $.ajax({
+      method: 'PUT',
+      url: url + song._id,
+      data: song,
+      error: function(err) { console.log('Error updating song', song.name, err); }
+    });
+
+    deferreds.push(putRequest);
+  });
+
+  // wait for all deferreds, then refetch and re-render the album
+  $.when.apply(null, deferreds).always(function() {
+    console.log('all updates received – time to refresh album');
+    fetchAndReRenderAlbumById(albumId);
+  });
+}
 
 function handleSuccess (albums) {
   albums.forEach(function(album) {
