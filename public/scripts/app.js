@@ -64,6 +64,11 @@ $(document).ready(function() {
     $('#songModal').modal();
   });
 
+  $('#albums').on('click', '.delete-album', function(e) {
+    var id = $(this).closest('.album').data('album-id');
+    console.log('id', id);
+  });
+
   $('#saveSong').on('click', handleNewSongSubmit);
 });
 
@@ -130,6 +135,7 @@ function renderAlbum(album) {
 
             <div class='panel-footer'>
               <button class='btn btn-primary add-song'>Add Song</button>
+              <button class='btn btn-danger delete-album'>Delete Album</button>
             </div>
 
           </div>
