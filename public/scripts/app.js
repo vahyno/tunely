@@ -41,6 +41,17 @@ $(document).ready(function() {
     success: handleSuccess,
     error: handleError
   });
+
+  $('#album-form').on('submit', function(event){
+    event.preventDefault();
+    var formData = $(this).serialize();
+    console.log(formData);
+    this.reset();
+    $.ajax({
+
+    });
+  });
+
 });
 
 function handleSuccess (albums) {

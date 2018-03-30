@@ -15,5 +15,6 @@ app.get('/api', controllers.api.index);   // brings me all the way to controller
 
 app.get('/api/albums', controllers.albums.index);
 
+app.post('/api/albums', controllers.albums.create);
 
 app.listen(3000);
