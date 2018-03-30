@@ -49,6 +49,14 @@ function index(req, res) {
 // POST /api/albums
 function create(req, res) {
   // create an album based on request body and send it back as JSON
+  console.log(req.body);
+  var genres = req.body.genres.split(',');
+  req.body.genres = genres;
+
+  db.Album.create(req.body, function(err, album) {
+    if (err) { console.log('error', err); }
+    res.json(album);
+  });
 }
 
 // GET /api/albums/:albumId

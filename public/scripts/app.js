@@ -47,12 +47,23 @@ $(document).ready(function() {
     var formData = $(this).serialize();
     console.log(formData);
     this.reset();
-    $.ajax({
 
+    $.ajax({
+      method: 'POST',
+      url: '/api/albums',
+      data: formData,
+      success: handlePostSuccess,
+      error: handleError
     });
   });
 
 });
+
+function handlePostSuccess (album) {
+  console.log('post success');
+  renderAlbum(album);
+};
+
 
 function handleSuccess (albums) {
     albums.forEach(function(album) {
