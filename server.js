@@ -11,7 +11,9 @@ app.get('/',function(req, res){
   res.sendFile('views/index.html', {root : __dirname});
 });
 
-app.get('/api', controllers.api.index);   // brings me all the way to controllers=>index.js=>apiController.js
+app.get('/api', controllers.api.index);   // brings me all the way to controllers=> index.js=> apiController.js
+
+app.get('/api/albums', controllers.albums.index);
 
 
 app.listen(3000);
