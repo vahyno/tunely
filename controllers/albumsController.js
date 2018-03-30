@@ -36,7 +36,7 @@ var db = require('../models');
 function index(req, res) {
   // send back all albums as JSON
   db.Album.find({})
-  		  .populate('albums')
+  		  // .populate('albums')
   		  .exec(function (err, allAlbums){
   			if (err) {
 		        res.status(500).send(err);
