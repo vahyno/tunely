@@ -57,7 +57,22 @@ $(document).ready(function() {
     });
   });
 
-});
+  $('#albums').on('click', '.add-song', function(e) {
+    console.log('add-song clicked!');
+
+    var id = $(this).closest('.album').data('album-id');
+    console.log('id', id);
+
+    $('#songModal').data('album-id', id);
+    $('#songModal').modal();
+  });
+
+
+
+
+
+
+}); //doc ready ending
 
 function handlePostSuccess (album) {
   console.log('post success');
@@ -77,8 +92,23 @@ function handleError(err){
 
 // this function takes in a single album and renders it to the page
 function renderAlbum(album) {
+
+  var arrayOfSongStrings = album.songs.map(function(eachSong){
+    return `${ eachSong.trackNumber } - ${ eachSong.name }`
+  })
+  var formattedSongStr = arrayOfSongStrings.join(', ');
+
   console.log('rendering album', album);
   $('#albums').append(`
+    <div data-album-id="album._id" class="row album">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="panel panel-default">
+                <div class="panel-body">
+
+                <!-- begin album internal row -->
+
+
+
     <div class='row'>
       <div class="col-md-3 col-xs-12 thumbnail album-art">
         <img src="images/800x800.png" alt="album image">
@@ -88,20 +118,40 @@ function renderAlbum(album) {
         <ul class="list-group">
           <li class="list-group-item">
             <h4 class='inline-header'>Album Name:</h4>
-            <span class='album-name'>${album.name}</span>
+            <span class='album-name'>${ album.name }</span>
           </li>
 
           <li class="list-group-item">
             <h4 class='inline-header'>Artist Name:</h4>
-            <span class='artist-name'>${album.artistName}</span>
+            <span class='artist-name'>${ album.artistName }</span>
           </li>
 
           <li class="list-group-item">
             <h4 class='inline-header'>Released date:</h4>
-            <span class='album-releaseDate'>${album.releaseDate}</span>
+            <span class='album-releaseDate'>${ album.releaseDate }</span>
           </li>
+
+          <li class="list-group-item">
+            <h4 class="inline-header">Songs:</h4>
+            <span>${ formattedSongStr }</span>
+          </li>
+
         </ul>
       </div>
     </div>
-  `);
+    <!-- end of album internal row -->
+
+                  <div class='panel-footer'>
+                  </div>
+                    <div class='panel-footer'>
+                        <button class='btn btn-primary add-song'>Add Song</button>
+                    </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+    `);
 };
